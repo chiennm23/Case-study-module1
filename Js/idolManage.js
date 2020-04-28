@@ -32,10 +32,12 @@ class IdolManage {
                     </tr>`
         return title;
     }
+
+    deleteIdol(id){
+        this.idols.splice(id-1,1);
+    }
 }
 
 let idolManage = new IdolManage();
-idolManage.addIdol(idol);
-idolManage.addIdol(idol2);
-idolManage.addIdol(idol3);
 idolManage.display();
+

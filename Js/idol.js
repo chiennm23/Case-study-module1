@@ -1,14 +1,22 @@
 class Idol {
-    constructor(id, fullname, anothername, birth, gender, address, nationality, heights, marital) {
+    constructor(id, fullName, anotherName, birth, gender, address, nationality, heights, marital) {
         this.id = id;
-        this.fullname = fullname;
-        this.anothername = anothername;
+        this.fullname = fullName;
+        this.anothername = anotherName;
         this.birth = birth;
         this.gender = gender;
         this.address = address;
         this.nationality = nationality;
         this.heights = heights;
         this.marital = marital;
+    }
+
+    setId(id) {
+        this.id = id;
+    }
+
+    getGender() {
+        return parseInt(this.gender) === 0 ? "Nữ" : "Nam";
     }
 
     getHtml() {
@@ -23,21 +31,19 @@ class Idol {
                <th>${this.heights}</th>
                <th>${this.marital}</th>
                <th>
-                    <button id="edit">Edit</button> | <button id="delete">Delete</button>
+                    <button id="edit" onclick="editIdol(${this.id});">Edit</button> | <button id="delete" onclick="deleteIdol(${this.id});">Delete</button>
                </th>
                </tr>`;
         return str;
     }
-    setId (id){
-        this.id = id;
+    editIdol(fullName, anotherName, birth, gender, address, nationality, heights, marital){
+        this.fullname = fullName;
+        this.anothername = anotherName;
+        this.birth = birth;
+        this.gender = gender;
+        this.address = address;
+        this.nationality = nationality;
+        this.heights = heights;
+        this.marital = marital;
     }
-
-    getGender(){
-        return parseInt(this.gender) === 0 ? "Nữ" : "Nam";
-    }
-
 }
-
-let idol = new Idol(1, "fafa", 'afaf',"afa", 1,'afaf',"ag",'a', 'g');
-let idol2 = new Idol(1, "fafa", 'afaf',"afa", 1,'afaf',"ag",'a', 'g');
-let idol3 = new Idol(1, "fafa", 'afaf',"afa", 0,'afaf',"ag",'a', 'g');
