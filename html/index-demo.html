@@ -20,6 +20,7 @@
         width: 100%;
         height: 500px;
         background: yellow;
+        position: relative;
     }
 
     div#footer {
@@ -68,10 +69,52 @@
         margin: 0;
         padding: 3px 0;
     }
+    div#detail {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        left: 0;
+        top: 0;
+        opacity: 1;
+    }
+    div#avatar {
+        width: 25%;
+        height: 95%;
+        float: left;
+    }
+    div#avatar img {
+        width: 230px;
+        height: 240px;
+    }
+    div#info {
+        width: 75%;
+        height: 95%;
+        float: left;
+        color: black;
+    }
+    div#close {
+        margin-left: 936px;
+    }
+    textarea {
+        margin: 0px;
+        width: 713px;
+        height: 389px
+    }
 </style>
 <body>
 <div id="banner"></div>
 <div id="main">
+    <div id="detail" style="display: none">
+        <div id="close"><button onclick="closeDetail();">X</button></div>
+        <div id="avatar">
+            <img src="https://2sao.vietnamnetjsc.vn/images/2019/04/11/15/31/ngo-kien-huy-2.jpg">
+        </div>
+        <div id="info">
+            <h1>Info idol</h1>
+            <textarea id="areaInfo" width = "300px" height = "700px"></textarea>
+        </div>
+    </div>
     <div id="sidebar">
         <ul>
             <li>Female idol</li>
@@ -79,12 +122,11 @@
         </ul>
     </div>
     <div id="content">
-
         <div class="idol">
             <img src="https://i.pinimg.com/736x/14/47/c8/1447c8dd7305269b2231058d05ce714a.jpg">
             <p>Trấn Thành</p>
         </div>
-        <div class="idol">
+        <div class="idol"  onclick="imgIdol();">
             <img src="https://2sao.vietnamnetjsc.vn/images/2019/04/11/15/31/ngo-kien-huy-2.jpg">
             <p>Ngô Kiến Huy</p>
         </div>
@@ -114,6 +156,16 @@
         </div>
     </div>
 </div>
+
 <div id="footer"></div>
+
+<script>
+    function imgIdol() {
+        document.getElementById("detail").style.display = 'block';
+    }
+    function closeDetail() {
+        document.getElementById("detail").style.display = 'none';
+    }
+</script>
 </body>
 </html>
