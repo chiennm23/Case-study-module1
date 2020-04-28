@@ -39,5 +39,6 @@ class IdolManage {
 }
 
 let idolManage = new IdolManage();
+
 idolManage.display();
 

@@ -7,48 +7,69 @@ let nationality = document.getElementById("nationality");
 let height = document.getElementById("height");
 let marital = document.getElementById("marital");
 let idolSelected = -1;
+
 function save() {
     let idol = new Idol(1, fullName.value, anotherName.value, dob.value, getGender(), address.value, nationality.value, height.value, marital.value);
     idolManage.addIdol(idol);
+    saveData();
     idolManage.display();
 }
 
 function getGender() {
-    console.log(gender);
     for (let i = 0; i < gender.length; i++) {
         if (gender[i].checked) {
             return gender[i].value;
         }
     }
 }
+
 function deleteIdol(index) {
     idolManage.deleteIdol(index);
+    saveData();
     idolManage.display();
 }
 
 function editIdol(index) {
-    let id = index-1;
+    let id = index - 1;
     fullName.value = idolManage.idols[id].fullname;
-    anotherName.value =idolManage.idols[id].anothername;
-    dob.value =idolManage.idols[id].birth;
-    address.value =idolManage.idols[id].address;
-    nationality.value =idolManage.idols[id].nationality;
-    height.value =idolManage.idols[id].height;
-    marital.value =idolManage.idols[id].marital;
+    anotherName.value = idolManage.idols[id].anothername;
+    dob.value = idolManage.idols[id].birth;
+    address.value = idolManage.idols[id].address;
+    nationality.value = idolManage.idols[id].nationality;
+    height.value = idolManage.idols[id].height;
+    marital.value = idolManage.idols[id].marital;
     idolSelected = id;
 }
 
 function updateIdol() {
     idolManage.idols[idolSelected].editIdol(fullName.value, anotherName.value, dob.value, getGender(), address.value, nationality.value, height.value, marital.value);
+    saveData();
     idolManage.display();
 }
 
-function clean() {
-    fullName.value = "";
-    anotherName.value = "";
-    dob.value = "";
-    address.value = "";
-    nationality.value = "";
-    height.value = "";
-    marital.value ="";
+// function clean() {
+//     fullName.value = "";
+//     anotherName.value = "";
+//     dob.value = "";
+//     address.value = "";
+//     nationality.value = "";
+//     height.value = "";
+//     marital.value = "";
+// }
+
+function saveData() {
+    localStorage.setItem("id", JSON.stringify(idolManage.idols));
 }
+
+function loadData() {
+    if (localStorage.getItem("id") !== null) {
+        let arr = JSON.parse(localStorage.getItem("id"));
+        for(let i = 0;i<arr.length;i++){
+            let idol = new Idol(arr[i].id,arr[i].fullname, arr[i].anothername, arr[i].birth, arr[i].gender, arr[i].address, arr[i].nationality, arr[i].heights, arr[i].marital);
+            idolManage.addIdol(idol);
+        }
+
+    }
+}
+loadData();
+idolManage.display();
