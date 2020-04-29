@@ -5,11 +5,11 @@ let gender = document.getElementsByName('gender');
 let address = document.getElementById("address");
 let nationality = document.getElementById("nationality");
 let height = document.getElementById("height");
-let marital = document.getElementById("marital");
+let avatar = document.getElementById("avatar");
 let idolSelected = -1;
 
 function save() {
-    let idol = new Idol(1, fullName.value, anotherName.value, dob.value, getGender(), address.value, nationality.value, height.value, marital.value);
+    let idol = new Idol(1, fullName.value, anotherName.value, dob.value, getGender(), address.value, nationality.value, height.value, avatar.value);
     idolManage.addIdol(idol);
     saveData();
     idolManage.display();
@@ -37,25 +37,15 @@ function editIdol(index) {
     address.value = idolManage.idols[id].address;
     nationality.value = idolManage.idols[id].nationality;
     height.value = idolManage.idols[id].height;
-    marital.value = idolManage.idols[id].marital;
+    avatar.value = idolManage.idols[id].avatar;
     idolSelected = id;
 }
 
 function updateIdol() {
-    idolManage.idols[idolSelected].editIdol(fullName.value, anotherName.value, dob.value, getGender(), address.value, nationality.value, height.value, marital.value);
+    idolManage.idols[idolSelected].editIdol(fullName.value, anotherName.value, dob.value, getGender(), address.value, nationality.value, height.value, avatar.value);
     saveData();
     idolManage.display();
 }
-
-// function clean() {
-//     fullName.value = "";
-//     anotherName.value = "";
-//     dob.value = "";
-//     address.value = "";
-//     nationality.value = "";
-//     height.value = "";
-//     marital.value = "";
-// }
 
 function saveData() {
     localStorage.setItem("id", JSON.stringify(idolManage.idols));
@@ -64,12 +54,13 @@ function saveData() {
 function loadData() {
     if (localStorage.getItem("id") !== null) {
         let arr = JSON.parse(localStorage.getItem("id"));
-        for(let i = 0;i<arr.length;i++){
-            let idol = new Idol(arr[i].id,arr[i].fullname, arr[i].anothername, arr[i].birth, arr[i].gender, arr[i].address, arr[i].nationality, arr[i].heights, arr[i].marital);
+        for (let i = 0; i < arr.length; i++) {
+            let idol = new Idol(arr[i].id, arr[i].fullname, arr[i].anothername, arr[i].birth, arr[i].gender, arr[i].address, arr[i].nationality, arr[i].heights, arr[i].avatar);
             idolManage.addIdol(idol);
         }
 
     }
 }
+
 loadData();
 idolManage.display();

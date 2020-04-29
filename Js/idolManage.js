@@ -27,18 +27,27 @@ class IdolManage {
                         <th>Address</th>
                         <th>Nationality</th>
                         <th>Height</th>
-                        <th>Marital Status</th>
+                        <th>Avatar</th>
                         <th>Act</th>
                     </tr>`
         return title;
     }
 
-    deleteIdol(id){
-        this.idols.splice(id-1,1);
+    deleteIdol(id) {
+        this.idols.splice(id - 1, 1);
+    }
+
+    displayIndex(idols) {
+        let str = '';
+        idols.forEach((idol, index) => {
+            index++;
+            idol.setId(index);
+            str += idol.getIdol();
+        })
+        document.getElementById("list-idol").innerHTML = str;
     }
 }
 
 let idolManage = new IdolManage();
 
-idolManage.display();
 

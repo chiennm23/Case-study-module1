@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <style>
     body {
         width: 960px;
         margin: auto;
     }
+
     div#banner {
         background-color: aqua;
         width: 100%;
         height: 250px;
-        background-image: url(https://image2.tin247.com/pictures/2020/01/07/awo1578380920.jpg);
+        background-image: url("https://image2.tin247.com/pictures/2020/01/07/awo1578380920.jpg");
     }
 
     div#main {
@@ -36,7 +38,7 @@
         float: left;
     }
 
-    div#content {
+    div#list-idol {
         width: 75%;
         height: 100%;
         background-color: darkblue;
@@ -62,13 +64,6 @@
         height: 200px;
     }
 
-    p {
-        background-color: orange;
-        font-size: large;
-        text-align: center;
-        margin: 0;
-        padding: 3px 0;
-    }
     div#detail {
         position: absolute;
         width: 100%;
@@ -78,94 +73,98 @@
         top: 0;
         opacity: 1;
     }
-    div#avatar {
+
+    div#img {
         width: 25%;
         height: 95%;
         float: left;
     }
-    div#avatar img {
+
+    div#img img {
         width: 230px;
         height: 240px;
     }
+
     div#info {
         width: 75%;
         height: 95%;
         float: left;
         color: black;
     }
+
     div#close {
         margin-left: 936px;
     }
+
     textarea {
         margin: 0px;
         width: 713px;
         height: 389px
+    }
+    div#areaInfo {
+        font-size: large;
+        float: left;
+    }
+
+    div#info-comment {
+        float: left;
+        font-size: large;
+
     }
 </style>
 <body>
 <div id="banner"></div>
 <div id="main">
     <div id="detail" style="display: none">
-        <div id="close"><button onclick="closeDetail();">X</button></div>
-        <div id="avatar">
-            <img src="https://2sao.vietnamnetjsc.vn/images/2019/04/11/15/31/ngo-kien-huy-2.jpg">
+        <div id="close">
+            <button onclick="closeDetail();">X</button>
+        </div>
+        <div id="img">
+            <img id="avatar">
         </div>
         <div id="info">
             <h1>Info idol</h1>
-            <textarea id="areaInfo" width = "300px" height = "700px"></textarea>
+            <div id="info-comment">
+                <p>Full Name: </p>
+                <p>Another Name: </p>
+                <p>Date of Birth: </p>
+                <p>Gender: </p>
+                <p>Address: </p>
+                <p>Nationality: </p>
+                <p>Height: </p>
+            </div>
+            <div id="areaInfo"></div>
         </div>
     </div>
     <div id="sidebar">
         <ul>
-            <li>Female idol</li>
-            <li>Male idol</li>
+            <li onclick="select('0');">Female idol</li>
+            <li onclick="select('1');">Male idol</li>
         </ul>
     </div>
-    <div id="content">
-        <div class="idol">
-            <img src="https://i.pinimg.com/736x/14/47/c8/1447c8dd7305269b2231058d05ce714a.jpg">
-            <p>Trấn Thành</p>
-        </div>
-        <div class="idol"  onclick="imgIdol();">
-            <img src="https://2sao.vietnamnetjsc.vn/images/2019/04/11/15/31/ngo-kien-huy-2.jpg">
-            <p>Ngô Kiến Huy</p>
-        </div>
-        <div class="idol">
-            <img src="https://afamilycdn.com/150157425591193600/2020/3/24/00-15850167011451862670341.jpg">
-            <p>Mi Du</p>
-        </div>
-        <div class="idol">
-            <img src="https://sohanews.sohacdn.com/2018/5/8/g1-1525788529643894974724.jpg">
-            <p>Trường Giang</p>
-        </div>
-        <div class="idol">
-            <img src="https://2sao.vietnamnetjsc.vn/images/2019/07/23/16/37/Screenshot3.png">
-            <p>Hà Anh Tuấn</p>
-        </div>
-        <div class="idol">
-            <img src="https://2sao.vietnamnetjsc.vn/images/2018/12/03/15/46/my-tam-1.jpeg">
-            <p>Mỹ Tâm</p>
-        </div>
-        <div class="idol">
-            <img src="https://www.hifivietnam.vn/wp-content/uploads/2019/08/VCT_4-1.jpg">
-            <p>Vũ Cát Tường</p>
-        </div>
-        <div class="idol">
-            <img src="https://nguoi-noi-tieng.com/photo/tieu-su-ca-si-ta-quang-thang-7096.jpg">
-            <p>Tạ Quang Thắng</p>
-        </div>
-    </div>
+    <div id="list-idol" style="display: block"></div>
 </div>
-
 <div id="footer"></div>
-
+<script src="../Js/idol.js"></script>
+<script src="../Js/idolManage.js"></script>
+<script src="../Js/main.js"></script>
 <script>
-    function imgIdol() {
+    function imgIdol(img, info) {
         document.getElementById("detail").style.display = 'block';
+        document.getElementById("avatar").src = img;
+        document.getElementById("areaInfo").innerHTML = info;
     }
+
     function closeDetail() {
         document.getElementById("detail").style.display = 'none';
     }
+
+    function select(gender) {
+        let filtered = idolManage.idols.filter(idol => idol.gender == gender);
+        idolManage.displayIndex(filtered);
+    }
+
+    idolManage.displayIndex(idolManage.idols);
 </script>
 </body>
 </html>
