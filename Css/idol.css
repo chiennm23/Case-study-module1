@@ -1,34 +1,37 @@
-body{
+body {
     padding: 0px;
     margin: 0px;
 }
-div.idol, div.list-idol{
-    width: 350px;
-    border: 1px solid #ccc ;
+
+div.idol, div.list-idol {
+    width: 285px;
+    border: 1px solid #ccc;
     margin: 25px;
     padding: 10px;
     float: left;
 }
-div.list-idol{
+
+div.list-idol {
     width: 850px;
 }
-table{
-;
-}
-h3{
+
+h3 {
     padding: 0px;
     margin-top: 0px;
 }
-div.idol label{
+
+div.idol label {
     width: 100px;
     float: left;
 }
-div.idol input[type="text"]{
-    width: 200px;
+
+div.idol input[type="text"] {
+    width: 170px;
     margin-bottom: 10px;
     padding: 5px;
 }
-div.idol button{
+
+div.idol button {
     border-radius: 3px;
     width: 60px;
 }
